@@ -305,19 +305,19 @@ class JpegData {
     return c;
   }
 
-  void _readExifData(InputBuffer block) {
-    // Exif Header
-    const exifSignature = 0x45786966; // Exif\0\0
-    final signature = block.readUint32();
-    if (signature != exifSignature) {
-      return;
-    }
-    if (block.readUint16() != 0) {
-      return;
-    }
+  // void _readExifData(InputBuffer block) {
+  //   // Exif Header
+  //   const exifSignature = 0x45786966; // Exif\0\0
+  //   final signature = block.readUint32();
+  //   if (signature != exifSignature) {
+  //     return;
+  //   }
+  //   if (block.readUint16() != 0) {
+  //     return;
+  //   }
 
-    exif.read(block);
-  }
+  //   exif.read(block);
+  // }
 
   void _readAppData(int marker, InputBuffer block) {
     final appData = block;
@@ -342,7 +342,7 @@ class JpegData {
       }
     } else if (marker == JpegMarker.app1) {
       // 'EXIF\0'
-      _readExifData(appData);
+      // _readExifData(appData);
     } else if (marker == JpegMarker.app14) {
       // 'Adobe\0'
       if (appData[0] == 0x41 &&
